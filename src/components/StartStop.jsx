@@ -1,10 +1,19 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-
+import {Audio} from "expo-av"
+import symbolicateStackTrace from "react-native/Libraries/Core/Devtools/symbolicateStackTrace";
 
 export default function StartStop( {isActive, setIsActive}) {
+     const playSound = async ()=>{
+        const {sound}= await Audio.Sound.createAsync(
+            require("@/assets/Sounds/bambu_1.mp3")
+        )
+        await sound.playAsync();
+    }
     const handleButton = ()=>{
+        playSound()
         setIsActive(!isActive)
     }
+   
 
     return (
 

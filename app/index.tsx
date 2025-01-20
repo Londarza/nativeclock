@@ -15,7 +15,7 @@ export default function Index() {
   const [time, setTime] = useState(25 * 60);
   const [currentTime, setCurrentTime] = useState("POMO"| "SHORT" | "BREAK");
   const [isActive,setIsActive] = useState(false)
-console.log('el current time seria: ', currentTime);
+
 
   return (
     <View
