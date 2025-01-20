@@ -2,32 +2,27 @@ import { TimerMode } from "@/app";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 
-const options = [
-    { label: "Pomodoro", mode: TimerMode.POMO, time: 25 },
-    { label: "Short Break", mode: TimerMode.SHORT, time: 5 },
-    { label: "Long Break", mode: TimerMode.BREAK, time: 15 },
-  ];
+
 
 export default function Header({ setTime, currentTime, setCurrentTime }) {
-  const handlePress = (option) => {
-    console.log("Selected Mode:", option.mode);
-    setCurrentTime(option.mode); // Cambiar el modo actual
-    setTime(option.time * 60); // Actualizar el tiempo en segundos
-  };
-
   
+const options = ["Pomodoro","Short Break","Long Break"]
+  const handlePress = (index)=>{
+    const newTime = index === 0 ? 25 : index === 1 ? 5 : 15
+    setCurrentTime(index)
+    setTime(newTime*60)
+  }
   return (
     <View style={styles.headers}>
       {options.map((option, index) => (
         <TouchableOpacity
           key={index}
-          onPress={() => handlePress(option)}
+          onPress={()=>handlePress(index)}
           style={[
-            styles.itemStyle,
-            currentTime !== option.mode && { borderColor: "transparent" },
+            styles.itemStyle,currentTime!= index &&{borderColor: "transparent"}
           ]}
         >
-          <Text>{option.label}</Text>
+          <Text style={{fontWeight:"bold"}}>{option}</Text>
         </TouchableOpacity>
       ))}
     </View>
@@ -43,5 +38,9 @@ const styles = StyleSheet.create({
     padding: 5,
     width: "33%",
     margin: 3,
+    marginVertical:20,
+    borderRadius: 10,
+    borderColor: "#eaba7f",
+    alignItems: "center"
   },
 });
